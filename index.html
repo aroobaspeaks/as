@@ -31,7 +31,6 @@
   .ur{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right;line-height:2;}
   a{color:inherit;}
 
-  /* ---------- ambient bg: duotone glow + floating notes (signature motion) ---------- */
   .bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
       radial-gradient(600px 400px at 20% -5%, rgba(37,244,238,0.10), transparent 60%),
       radial-gradient(600px 420px at 90% 10%, rgba(254,44,85,0.10), transparent 60%),
@@ -48,7 +47,6 @@
   .fade-up{opacity:0;transform:translateY(14px);animation:fadeUp 0.6s ease forwards;}
   @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
-  /* ---------- top bar / hero ---------- */
   .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);background:rgba(37,244,238,0.09);border:1px solid rgba(37,244,238,0.28);padding:6px 12px;border-radius:99px;}
   .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 1.4s infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
@@ -79,7 +77,6 @@
   .ticker b{color:var(--cyan);}
   @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-  /* ---------- cards ---------- */
   .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;position:relative;}
   .card.glow-border{border:1px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(120deg,var(--cyan),var(--pink)) border-box;}
   .card h2{font-size:14px;font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:0.01em;color:var(--ink);margin:0 0 2px;display:flex;align-items:center;gap:7px;}
@@ -87,7 +84,6 @@
   .subtext{font-size:12.5px;color:var(--ink-dim);margin:6px 0 10px;line-height:1.5;}
   .subtext.ur{margin:0 0 10px;}
 
-  /* collapsible / details */
   details{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden;}
   details summary{list-style:none;cursor:pointer;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;}
   details summary::-webkit-details-marker{display:none;}
@@ -115,8 +111,8 @@
   label{display:block;font-size:11.5px;font-weight:700;color:var(--ink-dim);margin:14px 0 3px;}
   label:first-of-type{margin-top:0;}
   .label-ur{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right;font-size:13px;color:var(--ink-dim);margin-bottom:6px;font-weight:500;}
-  input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--ink);font-size:16px;font-family:'Inter',sans-serif;min-height:47px;}
-  input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(37,244,238,0.14);}
+  input, select{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--ink);font-size:16px;font-family:'Inter',sans-serif;min-height:47px;}
+  input:focus, select:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(37,244,238,0.14);}
   input::placeholder{color:var(--ink-dim2);}
   input[type="checkbox"]{width:auto;min-height:auto;}
   .hint{font-size:10.5px;color:var(--ink-dim);margin-top:5px;}
@@ -145,7 +141,6 @@
   .confetti-pop{position:relative;overflow:hidden;}
   .confetti-piece{position:absolute;top:0;left:50%;width:7px;height:7px;border-radius:2px;opacity:0;pointer-events:none;}
 
-  /* ---------- profile ---------- */
   .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:17px;color:#050506;flex-shrink:0;}
   .prof-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
   .prof-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:15.5px;}
@@ -154,13 +149,12 @@
   .prof-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center;}
   .prof-box b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--cyan);}
   .prof-box span{font-size:9px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;}
-  .prof-detail-row{display:flex;justify-content:space-between;font-size:12.5px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--ink-dim);}
+  .prof-detail-row{display:flex;justify-content:space-between;font-size:12.5px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--ink-dim);align-items:center;}
   .prof-detail-row b{color:var(--ink);font-weight:600;}
   .prof-detail-row:last-child{border-bottom:none;}
   .hist-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px;gap:8px;}
   .hist-item:last-child{border-bottom:none;}
 
-  /* ---------- leaderboard ---------- */
   .lb-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);}
   .lb-item:last-child{border-bottom:none;}
   .lb-item.top{background:linear-gradient(90deg,rgba(255,200,71,0.08),transparent);margin:0 -10px;padding:11px 10px;border-radius:14px;border-bottom:none;}
@@ -207,7 +201,6 @@
   .admin-user-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
   .admin-tip-mini{border-top:1px solid var(--line);margin-top:10px;padding-top:10px;}
 
-  /* ---------- level up ---------- */
   .lvl-current{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--gold);}
   .lvl-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);}
   .lvl-row:last-child{border-bottom:none;}
@@ -218,7 +211,6 @@
   .lvl-title{font-weight:700;font-size:13px;}
   .lvl-reward{font-size:11.5px;color:var(--ink-dim);}
 
-  /* ---------- song battle ---------- */
   .battle-row{display:flex;justify-content:space-between;margin-bottom:6px;gap:8px;}
   .battle-side{min-width:0;}
   .battle-side.right{text-align:right;}
@@ -302,32 +294,49 @@
       <div id="authProfileBox" style="display:none;">
         <div class="prof-head">
           <div class="avatar" id="profAvatar">A</div>
-          <div>
+          <div style="flex:1;">
             <div class="prof-name">👋 <span id="profName"></span></div>
             <div class="prof-sub" id="profMemberSince"></div>
           </div>
         </div>
+        
         <div class="prof-grid">
           <div class="prof-box"><b id="profPoints">0</b><span>Points</span></div>
           <div class="prof-box"><b id="profReferrals">0</b><span>Referrals</span></div>
-          <div class="prof-box"><b id="profTipsAmt">0</b><span>Rs Sent</span></div>
+          <div class="prof-box"><b id="profRank">—</b><span>Rank</span></div>
         </div>
-        <div class="prof-detail-row"><span>Mobile</span><b id="profMobile">—</b></div>
+
+        <div id="profileEditBox" style="background:var(--bg-soft); padding:10px; border-radius:12px; margin-bottom:12px;">
+          <label style="margin-top:0;">Edit Name</label>
+          <input id="profEditName" style="padding:8px 10px; min-height:36px; font-size:14px; margin-bottom:8px;" />
+          <label style="margin-top:0;">Edit Mobile</label>
+          <input id="profEditMobile" inputmode="tel" maxlength="11" style="padding:8px 10px; min-height:36px; font-size:14px; margin-bottom:8px;" />
+          <button class="miniBtn v" id="profSaveFieldsBtn" style="margin-left:0; width:100%;">Save Changes</button>
+          <div id="profEditMsg" class="msg" style="font-size:11px;"></div>
+        </div>
+
+        <div class="prof-detail-row"><span>Rs Sent Permanently</span><b id="profTipsAmt">0</b></div>
         <div class="prof-detail-row"><span>Email</span><b id="profEmail">—</b></div>
+        <div class="prof-detail-row"><span>Referred By</span><b id="profReferredBy">Nobody</b></div>
+        
         <p class="subtext" style="margin:12px 0 4px;">Your permanent referral link:</p>
         <div class="reflink">
           <input id="profRefLink" readonly />
           <button class="copybtn" id="profRefCopyBtn" type="button">Copy<span class="cb-ur">کاپی</span></button>
         </div>
+        
         <div id="profHistoryWrap" style="margin-top:14px;display:none;">
-          <label style="margin:0 0 4px;">Your recent tips</label>
+          <div style="display:flex; justify-content:between; align-items:center; margin-bottom:6px;">
+            <label style="margin:0;">Your recent tips</label>
+            <button class="miniBtn n" id="profDownloadCsvBtn" style="font-size:10px; padding:4px 8px; min-height:24px;">📥 Download CSV</button>
+          </div>
           <div id="profHistoryList"></div>
         </div>
         <button class="admin-toggle" id="logoutBtn" type="button" style="margin-top:8px;">log out</button>
       </div>
     </div>
 
-    <!-- HOW IT WORKS (open by default — this is the core action) -->
+    <!-- HOW IT WORKS -->
     <details class="fade-up" style="animation-delay:.25s;" open>
       <summary>⚡ How it works <span class="chev">▾</span></summary>
       <div class="details-body">
@@ -361,10 +370,11 @@
       <div class="battle-track"><div class="battle-fill a" id="battleBarA" style="width:50%;"></div><div class="battle-fill b" id="battleBarB" style="width:50%;"></div></div>
     </div>
 
-    <!-- SUBMIT TIP (primary action) -->
+    <!-- SUBMIT TIP -->
     <div class="card glow-border fade-up" id="submitCard" style="animation-delay:.32s;">
       <h2>💌 Submit Your Tip</h2>
       <span class="card h2-ur">اپنی ٹپ جمع کروائیں</span>
+      
       <label>Your name / TikTok handle</label>
       <div class="label-ur">آپ کا نام / ٹک ٹاک ہینڈل</div>
       <input id="inName" placeholder="e.g. @sara.edits" />
@@ -383,6 +393,11 @@
       <label>Transaction ID</label>
       <div class="label-ur">ٹرانزیکشن آئی ڈی</div>
       <input id="inTxn" placeholder="JazzCash transaction ID" />
+
+      <label>Screenshot / Proof Image <span style="color:var(--ink-dim); font-weight:400;">(Optional)</span></label>
+      <div class="label-ur">اسکرین شاٹ لنک (اختیاری)</div>
+      <input id="inScreenshot" placeholder="Paste your ImgBB image URL link here" />
+      <div class="hint" style="color:var(--gold);">💡 How to upload proof: Go to free image hosting sites like <b>imgbb.com</b>, upload your screenshot receipt, and paste the image Link here!</div>
 
       <label>Referral code <span style="color:var(--ink-dim);font-weight:400;">(auto-filled if you used a link)</span></label>
       <div class="label-ur">ریفرل کوڈ (اگر لنک استعمال کیا ہے تو خودکار آ جائے گا)</div>
@@ -417,7 +432,7 @@
       <div id="leaderboard"><div class="empty">Loading…</div></div>
     </div>
 
-    <!-- REWARDS (secondary info, collapsed) -->
+    <!-- REWARDS -->
     <details class="fade-up" style="animation-delay:.45s;">
       <summary>🏆 Rewards &amp; Levels <span class="chev">▾</span></summary>
       <div class="details-body">
@@ -443,6 +458,7 @@
         <div class="admin-tabs">
           <div class="admin-tab active" id="tabTips" data-tab="tips">Tips</div>
           <div class="admin-tab" id="tabUsers" data-tab="users">Users</div>
+          <div class="admin-tab" id="tabReferrals" data-tab="referrals">Referrals</div>
           <div class="admin-tab" id="tabBattle" data-tab="battle">Battle</div>
         </div>
 
@@ -453,11 +469,27 @@
             <div class="filter-chip" data-f="verified">Verified</div>
             <div class="filter-chip" data-f="rejected">Rejected</div>
           </div>
+          
+          <div style="display:flex; gap:6px; margin-bottom:14px;">
+            <button class="miniBtn v" id="adminBulkVerifyBtn" style="margin:0; flex:1;">✔️ Bulk Verify Filtered</button>
+            <button class="miniBtn d" id="adminBulkRejectBtn" style="margin:0; flex:1;">❌ Bulk Reject Filtered</button>
+            <button class="miniBtn n" id="adminExportTipsCsvBtn" style="margin:0; flex:1;">📥 Export Tips CSV</button>
+          </div>
+          
           <div id="adminList"></div>
         </div>
 
         <div id="tabPaneUsers" style="display:none;">
+          <div style="margin-bottom:12px;">
+            <label>Search Users</label>
+            <input id="adminUserSearchInput" placeholder="Search by name, email, mobile, or code..." style="padding:10px; min-height:40px; margin-bottom:8px;" />
+          </div>
           <div id="adminUsersList"></div>
+        </div>
+
+        <div id="tabPaneReferrals" style="display:none;">
+          <label>Referral Leaderboard Matrix</label>
+          <div id="adminReferralLeaderboardPane" style="margin-top:8px;"></div>
         </div>
 
         <div id="tabPaneBattle" style="display:none;">
@@ -478,20 +510,14 @@
 </div>
 
 <script>
-// ====== SETUP — replace these values, see setup notes at bottom of this file ======
 const CREATOR_HANDLE = "@arooba7862";
 const JC_NUMBER = "03256795145";
 const FIREBASE_DB_URL = "https://aroobaspeaks-default-rtdb.firebaseio.com";
 const FIREBASE_API_KEY = "AIzaSyBYXSAfQqXagT6Wvp9WwF_bogZvJNxqDp8";
 const ADMIN_EMAIL = "r0333678@gmail.com";
-const ADMIN_UID = "OIwklzjA2QaWq0Xy2oMYdraBXbE2"; // must match firebase_rules.json
-// To enable "Continue with Google": create an OAuth Web Client ID in Google Cloud Console
-// (matching your Firebase project), enable the Google sign-in provider in Firebase Auth,
-// add your Netlify domain under Firebase Auth > Settings > Authorized domains, then paste
-// the client id below. Leave the placeholder to keep the Google button hidden.
+const ADMIN_UID = "OIwklzjA2QaWq0Xy2oMYdraBXbE2"; 
 const GOOGLE_CLIENT_ID = "508931802268-adh3fslvpgkdusagn6jrif7mhqu0fpjc.apps.googleusercontent.com";
 
-// Level Up Arooba — edit thresholds (total Rs. raised) and rewards freely
 const LEVELS = [
   { threshold: 0,     title: 'Rookie Supporter',    reward: 'Just getting started' },
   { threshold: 5000,  title: 'Level 1 · Bronze',     reward: 'Fan-requested lipsync video' },
@@ -500,13 +526,12 @@ const LEVELS = [
   { threshold: 50000, title: 'Level 4 · Platinum',   reward: 'Behind-the-scenes vlog' },
   { threshold: 80000, title: 'Level 5 · MAX',        reward: 'Surprise collab video' }
 ];
-// ====================================================================
 
-let adminIdToken = null;      // set after successful admin login, kept in memory only
-let session = loadSession();  // { uid, name, refCode, email, mobile } or null
-let selectedVote = null;      // 'A' | 'B' | null
+let adminIdToken = null;      
+let session = loadSession();  
+let selectedVote = null;      
 let authMode = 'signup';
-let pendingGoogle = null;     // holds {uid, idToken, email, name} while finishing a new Google signup
+let pendingGoogle = null;     
 let lastAdminTips = [];
 let adminFilter = 'all';
 
@@ -518,7 +543,7 @@ document.getElementById('creatorHandleUr').textContent = CREATOR_HANDLE;
 document.getElementById('jcNumber').textContent = JC_NUMBER;
 
 const REF_CACHE_KEY = 'arooba_ref_cache';
-const REF_CACHE_MS = 24 * 60 * 60 * 1000; // 24 hours
+const REF_CACHE_MS = 24 * 60 * 60 * 1000; 
 
 const params = new URLSearchParams(window.location.search);
 const incomingRef = params.get('ref');
@@ -536,7 +561,6 @@ if(incomingRef){
 }
 if(activeRef) document.getElementById('inRef').value = activeRef;
 
-// ---------- floating note particles (ambient motion) ----------
 (function initNotes(){
   const bg = document.getElementById('bgfx');
   const glyphs = ['🎵','✨','♪','❤️'];
@@ -607,6 +631,7 @@ document.getElementById('adminUnlockBtn').addEventListener('click', loadAdmin);
 function slugify(name){
   return name.toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,10) || 'fan';
 }
+// Keep random token simple but reliable
 function genCode(name){
   return slugify(name) + Math.floor(100+Math.random()*900);
 }
@@ -635,7 +660,6 @@ function fireConfetti(container){
   }
 }
 
-// ---- Firebase Realtime Database (free tier) via plain REST calls ----
 async function dbGetAll(){
   const res = await fetch(`${FIREBASE_DB_URL}/tips.json`);
   const data = await res.json();
@@ -648,7 +672,7 @@ async function dbPush(record){
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify(record)
   });
-  return res.json(); // { name: "-NxYz..." } <- this is the new id
+  return res.json(); 
 }
 async function dbPatch(id, patch){
   const authParam = adminIdToken ? `?auth=${adminIdToken}` : '';
@@ -690,7 +714,6 @@ async function signInAdmin(password){
   return data.idToken || null;
 }
 
-// ---- Battle config ----
 async function battleGet(){
   const res = await fetch(`${FIREBASE_DB_URL}/battle.json`);
   return res.json();
@@ -705,7 +728,6 @@ async function battleSet(cfg){
   return res.json();
 }
 
-// ---- banned users (kept out of leaderboard / blocked from login) ----
 async function getBannedSet(){
   try{
     const token = adminIdToken || (session && session.idToken);
@@ -718,7 +740,6 @@ async function getBannedSet(){
   }catch(e){ return new Set(); }
 }
 
-// ---- User accounts (email/password + Google, free on Spark plan) ----
 function saveSession(sess){ localStorage.setItem('arooba_session', JSON.stringify(sess)); }
 function loadSession(){ try{ return JSON.parse(localStorage.getItem('arooba_session')); }catch(e){ return null; } }
 function clearSession(){ localStorage.removeItem('arooba_session'); }
@@ -771,7 +792,7 @@ async function signUpUser(name, mobile, email, password){
   });
   if(!put2.ok) throw new Error('Could not save your profile — please try again.');
 
-  return { uid: localId, name, refCode, email, mobile, idToken, createdAt: profile.createdAt };
+  return { uid: localId, name, refCode, email, mobile, idToken, createdAt: profile.createdAt, referredBy: profile.referredBy };
 }
 
 async function signInUser(email, password){
@@ -786,7 +807,7 @@ async function signInUser(email, password){
   const profile = await profRes.json();
   if(!profile) throw new Error('Profile not found for this account.');
   if(profile.banned) throw { message: 'This account has been suspended by the admin.', raw:true };
-  return { uid: data.localId, name: profile.name, refCode: profile.refCode, email, mobile: profile.mobile, idToken: data.idToken, createdAt: profile.createdAt };
+  return { uid: data.localId, name: profile.name, refCode: profile.refCode, email, mobile: profile.mobile, idToken: data.idToken, createdAt: profile.createdAt, referredBy: profile.referredBy || null };
 }
 
 function renderAuthUI(){
@@ -797,11 +818,21 @@ function renderAuthUI(){
     profBox.style.display = 'block';
     document.getElementById('profName').textContent = session.name;
     document.getElementById('profAvatar').textContent = (session.name||'A').trim().charAt(0).toUpperCase();
-    document.getElementById('profMobile').textContent = session.mobile || '—';
     document.getElementById('profEmail').textContent = session.email || '—';
+    
+    document.getElementById('profEditName').value = session.name || '';
+    document.getElementById('profEditMobile').value = session.mobile || '';
+
     if(session.createdAt){
       document.getElementById('profMemberSince').textContent = 'Member since ' + new Date(session.createdAt).toLocaleDateString();
     }
+    
+    if (session.referredBy) {
+      document.getElementById('profReferredBy').textContent = session.referredBy;
+    } else {
+      document.getElementById('profReferredBy').textContent = "Nobody";
+    }
+
     const link = window.location.origin + window.location.pathname + '?ref=' + session.refCode;
     document.getElementById('profRefLink').value = link;
     if(!document.getElementById('inName').value) document.getElementById('inName').value = session.name;
@@ -823,6 +854,11 @@ async function renderProfileStats(){
   const mine = totals[session.uid] || { pts: 0 };
   document.getElementById('profPoints').textContent = mine.pts || 0;
 
+  // Calculate Leaderboard Rank
+  const ranked = Object.keys(totals).map(k => ({uid: k, pts: totals[k].pts})).sort((a,b)=>b.pts-a.pts);
+  const myIndex = ranked.findIndex(r => r.uid === session.uid);
+  document.getElementById('profRank').textContent = myIndex !== -1 ? '#' + (myIndex + 1) : '—';
+
   const myVerified = allTips.filter(t=>t.uid===session.uid && t.status==='verified');
   const totalAmt = myVerified.reduce((s,t)=>s+t.amount,0);
   document.getElementById('profTipsAmt').textContent = totalAmt.toLocaleString();
@@ -830,16 +866,81 @@ async function renderProfileStats(){
   const referrals = allTips.filter(t=>t.refUsed===session.refCode && t.status==='verified').length;
   document.getElementById('profReferrals').textContent = referrals;
 
-  const myTips = allTips.filter(t=>t.uid===session.uid).sort((a,b)=>b.createdAt-a.createdAt).slice(0,5);
+  const myTips = allTips.filter(t=>t.uid===session.uid).sort((a,b)=>b.createdAt-a.createdAt);
   const wrap = document.getElementById('profHistoryWrap');
   const list = document.getElementById('profHistoryList');
   if(myTips.length){
     wrap.style.display = 'block';
-    list.innerHTML = myTips.map(t=>`<div class="hist-item"><span>Rs.${t.amount.toLocaleString()} · ${new Date(t.createdAt).toLocaleDateString()}</span><span class="badge ${t.status}">${t.status}</span></div>`).join('');
+    list.innerHTML = myTips.slice(0,5).map(t=>`<div class="hist-item"><span>Rs.${t.amount.toLocaleString()} · ${new Date(t.createdAt).toLocaleDateString()}</span><span class="badge ${t.status}">${t.status}</span></div>`).join('');
   } else {
     wrap.style.display = 'none';
   }
 }
+
+// User Profile Direct Edit Utility
+document.getElementById('profSaveFieldsBtn').addEventListener('click', async () => {
+  const editMsg = document.getElementById('profEditMsg');
+  editMsg.className = "msg"; editMsg.textContent = "";
+  if(!session) return;
+  
+  const newName = document.getElementById('profEditName').value.trim();
+  const newMobileRaw = document.getElementById('profEditMobile').value.trim();
+  const newMobile = newMobileRaw ? normalizeMobile(newMobileRaw) : null;
+  
+  if(!newName) {
+    editMsg.className = "msg err"; editMsg.textContent = "Name field cannot be left blank.";
+    return;
+  }
+  if(newMobile && !isValidMobile(newMobile)) {
+    editMsg.className = "msg err"; editMsg.textContent = "Please enter a valid mobile layout format.";
+    return;
+  }
+
+  const btn = document.getElementById('profSaveFieldsBtn');
+  btn.disabled = true; btn.textContent = "Saving...";
+
+  try {
+    const patch = { name: newName, mobile: newMobile };
+    const res = await fetch(`${FIREBASE_DB_URL}/users/${session.uid}.json?auth=${session.idToken}`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(patch)
+    });
+    if(!res.ok) throw new Error("Fields update failed");
+    
+    session.name = newName;
+    session.mobile = newMobile;
+    saveSession(session);
+    renderAuthUI();
+    editMsg.className = "msg ok"; editMsg.textContent = "Profile parameters updated perfectly!";
+  } catch(e) {
+    editMsg.className = "msg err"; editMsg.textContent = "Failed updating properties online.";
+  }
+  btn.disabled = false; btn.textContent = "Save Changes";
+});
+
+// Download Personal History CSV Routine
+document.getElementById('profDownloadCsvBtn').addEventListener('click', async () => {
+  if(!session) return;
+  try {
+    const tips = await dbGetAll();
+    const mine = tips.filter(t => t.uid === session.uid).sort((a,b)=>b.createdAt-a.createdAt);
+    if(!mine.length) return;
+    
+    let csv = "DataTimestamp,Amount(PKR),TransactionID,VoteOption,StatusState\n";
+    mine.forEach(t => {
+      csv += `"${new Date(t.createdAt).toISOString()}","${t.amount}","${t.txn}","${t.vote||'None'}","${t.status}"\n`;
+    });
+    
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", `TipHistory_${session.refCode}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch(e) { alert("Could not fetch list data export."); }
+});
 
 document.getElementById('showSignup').addEventListener('click', ()=>{
   authMode = 'signup';
@@ -915,7 +1016,6 @@ async function handleAuthSubmit(){
   btn.textContent = originalText;
 }
 
-// ---- Google sign-in ----
 function initGoogle(){
   if(!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.startsWith('YOUR_')) return;
   if(!window.google || !google.accounts || !google.accounts.id) return;
@@ -959,7 +1059,7 @@ async function handleGoogleCredential(response){
       msgEl.className = 'msg err';
       return;
     }
-    session = { uid: data.localId, name: profile.name, refCode: profile.refCode, email: data.email, mobile: profile.mobile, idToken: data.idToken, createdAt: profile.createdAt };
+    session = { uid: data.localId, name: profile.name, refCode: profile.refCode, email: data.email, mobile: profile.mobile, idToken: data.idToken, createdAt: profile.createdAt, referredBy: profile.referredBy || null };
     saveSession(session);
     renderAuthUI();
   }catch(e){
@@ -996,7 +1096,7 @@ document.getElementById('gCompleteBtn').addEventListener('click', async ()=>{
       console.error('Google signup profile PUT failed:', put.status, detail);
       throw new Error('Could not save your profile — please try again.' + detail);
     }
-    session = { uid: pendingGoogle.uid, name, refCode, email: pendingGoogle.email, mobile, idToken: pendingGoogle.idToken, createdAt };
+    session = { uid: pendingGoogle.uid, name, refCode, email: pendingGoogle.email, mobile, idToken: pendingGoogle.idToken, createdAt, referredBy: profile.referredBy };
     saveSession(session);
     pendingGoogle = null;
     document.getElementById('googleCompleteBox').style.display = 'none';
@@ -1008,7 +1108,6 @@ document.getElementById('gCompleteBtn').addEventListener('click', async ()=>{
   btn.disabled = false; btn.textContent = 'Finish Sign Up';
 });
 
-// ---- Song battle vote buttons ----
 document.getElementById('voteABtn').addEventListener('click', ()=>{
   selectedVote = selectedVote === 'A' ? null : 'A';
   document.getElementById('voteABtn').classList.toggle('vote-active', selectedVote === 'A');
@@ -1081,6 +1180,7 @@ async function submitTip(){
   const amount = parseFloat(document.getElementById('inAmount').value);
   const txn = document.getElementById('inTxn').value.trim();
   const ref = document.getElementById('inRef').value.trim();
+  const screenshotUrl = document.getElementById('inScreenshot').value.trim();
   const msgEl = document.getElementById('submitMsg');
   msgEl.className = 'msg';
 
@@ -1110,7 +1210,8 @@ async function submitTip(){
       name, amount, txn, refUsed: ref || null,
       myCode, status: 'pending', createdAt: Date.now(),
       uid: session ? session.uid : null,
-      vote: selectedVote
+      vote: selectedVote,
+      screenshotUrl: screenshotUrl || null
     };
     const pushed = await dbPush(record);
     if(pushed && pushed.name){
@@ -1145,8 +1246,7 @@ function animateCount(el, target, prefix){
   requestAnimationFrame(step);
 }
 
-// Shared points aggregation: groups by account (uid) when available, else by name.
-// Also credits the referrer (by myCode) with half the points as a bonus.
+// Points are distributed purely to approved tip events
 function computeTotals(verifiedTips){
   const totals = {};
   function add(key, name, pts){
@@ -1225,7 +1325,6 @@ function toggleAdmin(){
   c.style.display = c.style.display==='none' ? 'block' : 'none';
 }
 
-// ---- admin tabs ----
 document.querySelectorAll('.admin-tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
     document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
@@ -1233,10 +1332,13 @@ document.querySelectorAll('.admin-tab').forEach(tab=>{
     const which = tab.dataset.tab;
     document.getElementById('tabPaneTips').style.display = which==='tips' ? 'block' : 'none';
     document.getElementById('tabPaneUsers').style.display = which==='users' ? 'block' : 'none';
+    document.getElementById('tabPaneReferrals').style.display = which==='referrals' ? 'block' : 'none';
     document.getElementById('tabPaneBattle').style.display = which==='battle' ? 'block' : 'none';
     if(which==='users') loadAdminUsers();
+    if(which==='referrals') loadAdminReferralLeaderboard();
   });
 });
+
 document.querySelectorAll('.filter-chip').forEach(chip=>{
   chip.addEventListener('click', ()=>{
     document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
@@ -1295,8 +1397,9 @@ function renderAdminTipsList(){
       <div style="min-width:0;">
         <div style="font-weight:700;">${escapeHtml(t.name)} — Rs.${t.amount}${t.vote ? ' · voted '+t.vote : ''}</div>
         <div style="color:var(--ink-dim);font-size:11px;word-break:break-all;">TXN: ${escapeHtml(t.txn)} ${t.refUsed?(' · ref: '+escapeHtml(t.refUsed)):''}${t.uid?' · account':' · guest'}</div>
-        <div style="margin-top:4px;">
+        <div style="margin-top:4px; display:flex; gap:6px; align-items:center;">
           <button class="miniBtn n" onclick="revealTipContact('${t.id}', this)">📱 view number</button>
+          ${t.screenshotUrl ? `<a href="${escapeHtml(t.screenshotUrl)}" target="_blank" class="miniBtn v" style="text-decoration:none; display:inline-flex; align-items:center; min-height:32px;">🖼️ View Proof Image</a>` : '<span style="font-size:10px; color:var(--ink-dim2);">No Proof</span>'}
         </div>
       </div>
       <div style="flex-shrink:0;text-align:right;">
@@ -1314,6 +1417,170 @@ async function revealTipContact(id, btn){
   btn.disabled = false;
   btn.textContent = mobile ? ('📱 ' + mobile) : '📱 not found';
   btn.classList.remove('n');
+}
+
+// Bulk Actions Logic
+document.getElementById('adminBulkVerifyBtn').addEventListener('click', async () => {
+  let filtered = lastAdminTips;
+  if(adminFilter !== 'all') filtered = filtered.filter(t => t.status === adminFilter);
+  const pendings = filtered.filter(t => t.status === 'pending');
+  if(!pendings.length) return alert("No pending tips found inside this filter context.");
+  if(!confirm(`Verify all ${pendings.length} pending entries at once?`)) return;
+  
+  for(const t of pendings) {
+    await dbPatch(t.id, {status: 'verified'});
+  }
+  await loadAdmin();
+  renderLeaderboard();
+  renderBattle();
+});
+
+document.getElementById('adminBulkRejectBtn').addEventListener('click', async () => {
+  let filtered = lastAdminTips;
+  if(adminFilter !== 'all') filtered = filtered.filter(t => t.status === adminFilter);
+  const pendings = filtered.filter(t => t.status === 'pending');
+  if(!pendings.length) return alert("No pending tips found inside this filter context.");
+  if(!confirm(`Reject all ${pendings.length} pending entries at once?`)) return;
+  
+  for(const t of pendings) {
+    await dbPatch(t.id, {status: 'rejected'});
+  }
+  await loadAdmin();
+  renderLeaderboard();
+  renderBattle();
+});
+
+// Admin Tips Export Routine
+document.getElementById('adminExportTipsCsvBtn').addEventListener('click', () => {
+  let filtered = lastAdminTips;
+  if(adminFilter !== 'all') filtered = filtered.filter(t => t.status === adminFilter);
+  if(!filtered.length) return alert("No data available to print.");
+  
+  let csv = "TipID,Name,Amount,TxnID,Status,RefUsed,Vote,ScreenshotLink\n";
+  filtered.forEach(t => {
+    csv += `"${t.id}","${t.name}","${t.amount}","${t.txn}","${t.status}","${t.refUsed||''}","${t.vote||''}","${t.screenshotUrl||''}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.setAttribute("download", `TipsExport_${adminFilter}_${Date.now()}.csv`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
+
+// Admin User Live Realtime Filtering
+document.getElementById('adminUserSearchInput').addEventListener('input', () => {
+  renderAdminUsersListFiltered();
+});
+
+let computedUsersCache = {};
+async function loadAdminUsers(){
+  const listEl = document.getElementById('adminUsersList');
+  listEl.innerHTML = '<div class="empty">Loading…</div>';
+  try{
+    const res = await fetch(`${FIREBASE_DB_URL}/users.json?auth=${adminIdToken}`);
+    computedUsersCache = (await res.json()) || {};
+  }catch(e){ computedUsersCache = {}; }
+  renderAdminUsersListFiltered();
+}
+
+function renderAdminUsersListFiltered(){
+  const listEl = document.getElementById('adminUsersList');
+  const query = document.getElementById('adminUserSearchInput').value.toLowerCase().trim();
+  
+  let tips = lastAdminTips;
+  const verified = tips.filter(t=>t.status==='verified');
+  const totals = computeTotals(verified);
+
+  const uids = Object.keys(computedUsersCache).sort((a,b)=> (computedUsersCache[b].createdAt||0) - (computedUsersCache[a].createdAt||0));
+  
+  const filteredUids = uids.filter(uid => {
+    const u = computedUsersCache[uid];
+    return (
+      (u.name || '').toLowerCase().includes(query) ||
+      (u.email || '').toLowerCase().includes(query) ||
+      (u.mobile || '').toLowerCase().includes(query) ||
+      (u.refCode || '').toLowerCase().includes(query)
+    );
+  });
+
+  if(filteredUids.length===0){
+    listEl.innerHTML = '<div class="empty">No registered matching users located.</div>';
+    return;
+  }
+
+  listEl.innerHTML = filteredUids.map(uid=>{
+    const u = computedUsersCache[uid];
+    const pts = (totals[uid] && totals[uid].pts) || 0;
+    const referrals = verified.filter(t=>t.refUsed===u.refCode).length;
+    const isBanned = !!u.banned;
+    return `
+    <div class="admin-user-card" id="user-${uid}">
+      <div class="admin-user-top">
+        <div>
+          <div class="admin-user-name">${escapeHtml(u.name||'—')} ${isBanned?'<span class="badge banned">banned</span>':'<span class="badge active">active</span>'}</div>
+          <div class="admin-user-sub">📱 ${escapeHtml(u.mobile||'—')}<br/>✉️ ${escapeHtml(u.email||'—')}<br/>🔗 Code: <b>${escapeHtml(u.refCode||'—')}</b><br/>Referred By: <span style="color:var(--gold); font-weight:bold;">${escapeHtml(u.referredBy || 'Nobody')}</span> ${u.authProvider==='google'?'· Google':''}</div>
+        </div>
+      </div>
+      <div class="admin-user-stats">
+        <span>Points: <b>${pts}</b></span>
+        <span>Verified Referrals count: <b>${referrals}</b></span>
+      </div>
+      <div class="admin-user-actions">
+        <button class="miniBtn ${isBanned?'v':'x'}" onclick="toggleBanUser('${uid}', ${!isBanned})">${isBanned?'✅ Unban':'🚫 Ban User'}</button>
+        <button class="miniBtn d" onclick="deleteUser('${uid}')">🗑️ Delete account</button>
+        <button class="miniBtn n" onclick="toggleUserTips('${uid}')">📄 View tips</button>
+      </div>
+      <div class="admin-tip-mini" id="usertips-${uid}" style="display:none;"></div>
+    </div>`;
+  }).join('');
+}
+
+// Admin Tab View: Referrals Matrix Analysis Dashboard
+async function loadAdminReferralLeaderboard(){
+  const pane = document.getElementById('adminReferralLeaderboardPane');
+  pane.innerHTML = '<div class="empty">Analyzing logs...</div>';
+  
+  let tips = lastAdminTips;
+  const verified = tips.filter(t=>t.status === 'verified');
+  
+  let users = {};
+  try {
+    const res = await fetch(`${FIREBASE_DB_URL}/users.json?auth=${adminIdToken}`);
+    users = await res.json() || {};
+  } catch(e){}
+  
+  const refMap = {};
+  Object.values(users).forEach(u => {
+    refMap[u.refCode] = { name: u.name, count: 0, volume: 0 };
+  });
+  
+  verified.forEach(t => {
+    if(t.refUsed) {
+      if(!refMap[t.refUsed]) {
+        refMap[t.refUsed] = { name: `Unknown Code (${t.refUsed})`, count: 0, volume: 0 };
+      }
+      refMap[t.refUsed].count++;
+      refMap[t.refUsed].volume += t.amount;
+    }
+  });
+  
+  const sortedRefRows = Object.entries(refMap).map(([code, data]) => ({code, ...data})).sort((a,b) => b.count - a.count);
+  if(!sortedRefRows.length) {
+    pane.innerHTML = '<div class="empty">No interaction referral traces recorded yet.</div>';
+    return;
+  }
+  
+  pane.innerHTML = sortedRefRows.map(r => `
+    <div class="admin-row">
+       <div>
+         <b>${escapeHtml(r.name)}</b> (Code: <span style="color:var(--cyan);">${escapeHtml(r.code)}</span>)
+         <div style="font-size:11px; color:var(--ink-dim);">Total tips produced by this link: ${r.count} times</div>
+       </div>
+       <b style="color:var(--gold);">Rs.${r.volume.toLocaleString()}</b>
+    </div>
+  `).join('');
 }
 
 document.getElementById('battleSaveBtn').addEventListener('click', async ()=>{
@@ -1380,53 +1647,6 @@ async function deleteTip(id){
   }
 }
 
-// ---- admin: users management ----
-async function loadAdminUsers(){
-  const listEl = document.getElementById('adminUsersList');
-  listEl.innerHTML = '<div class="empty">Loading…</div>';
-  let users = {};
-  try{
-    const res = await fetch(`${FIREBASE_DB_URL}/users.json?auth=${adminIdToken}`);
-    users = (await res.json()) || {};
-  }catch(e){ users = {}; }
-
-  let tips = lastAdminTips.length ? lastAdminTips : (await dbGetAll());
-  const verified = tips.filter(t=>t.status==='verified');
-  const totals = computeTotals(verified);
-
-  const uids = Object.keys(users).sort((a,b)=> (users[b].createdAt||0) - (users[a].createdAt||0));
-  if(uids.length===0){
-    listEl.innerHTML = '<div class="empty">No registered users yet.</div>';
-    return;
-  }
-
-  listEl.innerHTML = uids.map(uid=>{
-    const u = users[uid];
-    const pts = (totals[uid] && totals[uid].pts) || 0;
-    const referrals = verified.filter(t=>t.refUsed===u.refCode).length;
-    const isBanned = !!u.banned;
-    return `
-    <div class="admin-user-card" id="user-${uid}">
-      <div class="admin-user-top">
-        <div>
-          <div class="admin-user-name">${escapeHtml(u.name||'—')} ${isBanned?'<span class="badge banned">banned</span>':'<span class="badge active">active</span>'}</div>
-          <div class="admin-user-sub">📱 ${escapeHtml(u.mobile||'—')}<br/>✉️ ${escapeHtml(u.email||'—')}<br/>🔗 ${escapeHtml(u.refCode||'—')} ${u.authProvider==='google'?'· Google':''}</div>
-        </div>
-      </div>
-      <div class="admin-user-stats">
-        <span>Points: <b>${pts}</b></span>
-        <span>Referrals: <b>${referrals}</b></span>
-      </div>
-      <div class="admin-user-actions">
-        <button class="miniBtn ${isBanned?'v':'x'}" onclick="toggleBanUser('${uid}', ${!isBanned})">${isBanned?'✅ Unban':'🚫 Ban & zero points'}</button>
-        <button class="miniBtn d" onclick="deleteUser('${uid}')">🗑️ Delete account</button>
-        <button class="miniBtn n" onclick="toggleUserTips('${uid}')">📄 View tips</button>
-      </div>
-      <div class="admin-tip-mini" id="usertips-${uid}" style="display:none;"></div>
-    </div>`;
-  }).join('');
-}
-
 async function toggleBanUser(uid, makeBanned){
   if(makeBanned && !confirm('Ban this user? Their points will be hidden from the leaderboard and they will be signed out on next login attempt.')) return;
   try{
@@ -1489,40 +1709,5 @@ renderAuthUI();
 renderLeaderboard();
 renderBattle();
 </script>
-
-<!--
-=====================================================================
-SETUP NOTES
-=====================================================================
-1. Firebase Realtime Database rules: upload firebase_rules.json in the
-   Firebase console (Realtime Database > Rules) exactly as provided.
-
-2. Email/password sign-in: already works out of the box using the
-   FIREBASE_API_KEY and FIREBASE_DB_URL above (Firebase Auth > Sign-in
-   method > Email/Password must be enabled).
-
-3. Google sign-in (optional):
-   a. Firebase console > Authentication > Sign-in method > enable Google.
-   b. Google Cloud Console > APIs & Services > Credentials > create an
-      OAuth 2.0 Web Client ID. Add your Netlify URL (and localhost, if
-      testing) under "Authorized JavaScript origins".
-   c. Firebase console > Authentication > Settings > Authorized domains
-      > add your Netlify domain (e.g. yoursite.netlify.app).
-   d. Paste the Web Client ID into GOOGLE_CLIENT_ID above. Until you do,
-      the Google button simply stays hidden and email/password still
-      works normally.
-
-4. Admin account: ADMIN_EMAIL must be a real Firebase Auth user (email +
-   password) whose UID matches ADMIN_UID here and the admin uid inside
-   firebase_rules.json. Create it once in Firebase console > Authentication
-   > Users, then copy its UID into both places if it ever changes.
-
-5. Mobile numbers: tip submissions store the phone number in a separate
-   /tipContacts/{tipId} node that only the admin can read (not public),
-   to keep phone numbers private even though the rest of the leaderboard
-   is public. Registered users' own numbers live on their private
-   /users/{uid} profile, readable only by that user and the admin.
-=====================================================================
--->
 </body>
 </html>
