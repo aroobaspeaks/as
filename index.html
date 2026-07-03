@@ -947,6 +947,7 @@ async function handleGoogleCredential(response){
     saveSession(session);
     renderAuthUI();
   }catch(e){
+    console.error('Google sign-in error:', e);
     msgEl.textContent = e.message || 'Google sign-in failed.';
     msgEl.className = 'msg err';
   }
@@ -972,7 +973,12 @@ document.getElementById('gCompleteBtn').addEventListener('click', async ()=>{
     const put = await fetch(`${FIREBASE_DB_URL}/users/${pendingGoogle.uid}.json?auth=${pendingGoogle.idToken}`, {
       method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(profile)
     });
-    if(!put.ok) throw new Error('Could not save your profile — please try again.');
+    if(!put.ok){
+      let detail = '';
+      try{ const errBody = await put.json(); detail = errBody && errBody.error ? ' ('+errBody.error+')' : ''; }catch(_e){}
+      console.error('Google signup profile PUT failed:', put.status, detail);
+      throw new Error('Could not save your profile — please try again.' + detail);
+    }
     session = { uid: pendingGoogle.uid, name, refCode, email: pendingGoogle.email, mobile, idToken: pendingGoogle.idToken, createdAt };
     saveSession(session);
     pendingGoogle = null;
