@@ -169,22 +169,7 @@
   }
 
   .card h2 { font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: 0.02em; color: #fff; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
-  /* Notice there is NO space between .card and .h2-ur now */
-..card.h2-ur { 
-  font-family: 'Noto Nastaliq Urdu', serif; 
-  direction: rtl; 
-  text-align: right; 
-  font-size: 15.5px; 
-  color: var(--ink-dim); 
-  font-weight: 500; 
-  display: block; 
-  
-  /* Add these to position it to the right side of the main container */
-  position: absolute;
-  right: 22px;
-  top: 22px;
-  margin: 0;
-}
+  .card h2-ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; text-align: right; font-size: 15.5px; color: var(--ink-dim); margin: 0 0 14px; font-weight: 500; display: block; }
   .subtext { font-size: 13px; color: var(--ink-dim); margin: 6px 0 12px; line-height: 1.55; }
 
   /* Premium Perks Design at Top */
@@ -401,16 +386,15 @@
 <div class="wrap">
   <div class="content">
 
-    <span class="eyebrow fade-up"><span class="dot"></span> Live Challenge · لائیو چیلنج</span>
+    <span class="eyebrow fade-up"><span class="dot"></span> Live Challenge</span>
     <h1 class="glitch fade-up" data-text="Support & Climb" style="animation-delay:.05s;">Support & Climb</h1>
-    <h1 class="ur fade-up" style="animation-delay:.05s;">سپورٹ کریں اور آگے بڑھیں</h1>
-    <p class="lead fade-up" style="animation-delay:.1s;">Send a tip to <span class="handle" id="creatorHandle">@arooba7862</span>, climb the leaderboard. Top 5 win a shoutout + collab video. Share your link to earn bonus points.</p>
-    <p class="lead ur fade-up" style="animation-delay:.1s;">سپورٹ کریں <span class="handle" id="creatorHandleUr">@arooba7862</span> اور لیڈر بورڈ پر آگے بڑھیں۔ ٹاپ 5 کو کولاب اور گفٹ ملے گا۔ اپنا لنک شیئر کر کے بونس پوائنٹس کمائیں۔</p>
+
+    <p class="lead fade-up" style="animation-delay:.1s;">Send a tip to <span class="handle" id="creatorHandle">Arooba</span>, climb the leaderboard. Top 5 win a shoutout + collab video. Share your link to earn bonus points.</p>
+    <p class="lead ur fade-up" style="animation-delay:.1s;">سپورٹ کریں <span class="handle" id="creatorHandleUr">Arooba</span> اور لیڈر بورڈ پر آگے بڑھیں۔ ٹاپ 5 کو کولاب اور گفٹ ملے گا۔ اپنا لنک شیئر کر کے بونس پوائنٹس کمائیں۔</p>
 
     <!-- PREMIUM TIERS & PERKS SECTION (BROUGHT TO TOP) -->
     <div class="card glow-border fade-up" style="animation-delay:.12s; background: linear-gradient(145deg, rgba(25,22,15,0.7), rgba(15,15,20,0.7));">
       <h2 class="perks-header">💎 Exclusive Supporter Perks &amp; Rewards</h2>
-      <span class="card h2-ur" style="color: var(--gold);">خصوصی انعامات اور مراعات</span>
       <p class="subtext" style="color: #e5c375; font-weight: 500; margin-bottom: 6px;">Unlock premium rewards and climb tiers with every tip sent or verified referral link conversion!</p>
       
       <div class="perk-badge-grid">
@@ -434,9 +418,9 @@
     </div>
 
     <div class="stats fade-up" style="animation-delay:.15s;">
-      <div class="stat"><div class="stat-num" id="statTotal">Rs.0</div><div class="stat-lbl">Raised</div><div class="stat-lbl-ur">جمع شدہ</div></div>
-      <div class="stat"><div class="stat-num" id="statCount">0</div><div class="stat-lbl">Supporters</div><div class="stat-lbl-ur">سپورٹرز</div></div>
-      <div class="stat"><div class="stat-num" id="statTop">—</div><div class="stat-lbl">Top Score</div><div class="stat-lbl-ur">ٹاپ سکور</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">Rs.0</div><div class="stat-lbl">Raised</div></div>
+      <div class="stat"><div class="stat-num" id="statCount">0</div><div class="stat-lbl">Supporters</div></div>
+      <div class="stat"><div class="stat-num" id="statTop">—</div><div class="stat-lbl">Top Score</div></div>
     </div>
 
     <div class="ticker-wrap fade-up" style="animation-delay:.2s;">
@@ -548,7 +532,7 @@
     <!-- SONG BATTLE -->
     <div class="card fade-up" id="battleCard" style="animation-delay:.28s;display:none;">
       <h2>⚔️ Song Battle</h2>
-      <span class="card h2-ur">سونگ بیٹل</span>
+
       <p class="subtext">Vote with your tip. Whichever song raises more by the deadline wins — Arooba lipsyncs it next!</p>
       <div class="battle-row">
         <div class="battle-side"><div class="battle-name" id="battleSongA">Song A</div><div class="battle-amt" id="battleTotalA">Rs.0</div></div>
@@ -560,7 +544,7 @@
     <!-- SUBMIT TIP -->
     <div class="card glow-border fade-up" id="submitCard" style="animation-delay:.3s;">
       <h2>💌 Submit Your Tip</h2>
-      <span class="card h2-ur">اپنی ٹپ جمع کروائیں</span>
+      
       
       <label>Your name / TikTok handle</label>
       <div class="label-ur">آپ کا نام / ٹک ٹاک ہینڈل</div>
@@ -615,7 +599,7 @@
 
     <div class="card fade-up" style="animation-delay:.35s;">
       <h2>📊 Leaderboard</h2>
-      <span class="card h2-ur">لیڈر بورڈ</span>
+      
       <div id="leaderboard"><div class="empty">Loading…</div></div>
     </div>
 
@@ -691,13 +675,11 @@
       </div>
     </div>
 
-    <footer>Made for @arooba7862 · secured with Firebase</footer>
-
   </div>
 </div>
 
 <script>
-const CREATOR_HANDLE = "@arooba7862";
+const CREATOR_HANDLE = "Arooba";
 const JC_NUMBER = "03256795145";
 const FIREBASE_DB_URL = "https://aroobaspeaks-default-rtdb.firebaseio.com";
 const FIREBASE_API_KEY = "AIzaSyBYXSAfQqXagT6Wvp9WwF_bogZvJNxqDp8";
