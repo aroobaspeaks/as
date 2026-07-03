@@ -1548,7 +1548,7 @@ function exportAdminDataCSV() {
   lastAdminTips.forEach(t => {
     csvContent += `Tip,${t.tid},"${t.displayName.replace(/"/g, '""')}",${t.amount},${t.status},${t.createdAt}\n`;
   });
-
+  
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
