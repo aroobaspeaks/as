@@ -386,7 +386,12 @@
 <div class="wrap">
   <div class="content">
 
-    <span class="eyebrow fade-up"><span class="dot"></span> Live Challenge</span>
+    <div class="fade-up" style="display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;">
+  <span class="eyebrow" style="margin: 0;"><span class="dot"></span> Live Challenge</span>
+  <span class="eyebrow" id="challengeCountdown" style="margin: 0; background: rgba(255, 200, 71, 0.12); border-color: rgba(255, 200, 71, 0.3); color: var(--gold); font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.05em;">
+    ⏳ <span id="countdownText">00d 00h 00m 00s</span>
+  </span>
+</div>
     <h1 class="glitch fade-up" data-text="Support & Climb" style="animation-delay:.05s;">Support & Climb</h1>
 
     <p class="lead fade-up" style="animation-delay:.1s;">Send a tip to <span class="handle" id="creatorHandle">Arooba</span>, climb the leaderboard. Top 5 win a shoutout + collab video. Share your link to earn bonus points.</p>
@@ -686,6 +691,42 @@ const FIREBASE_API_KEY = "AIzaSyBYXSAfQqXagT6Wvp9WwF_bogZvJNxqDp8";
 const ADMIN_EMAIL = "r0333678@gmail.com";
 const ADMIN_UID = "Z5hPFN6rTpUc7aVT8q4LpKjdttY2"; 
 const GOOGLE_CLIENT_ID = "508931802268-adh3fslvpgkdusagn6jrif7mhqu0fpjc.apps.googleusercontent.com";
+
+const TARGET_DEADLINE = new Date("2026-07-15T23:59:59").getTime();
+
+function updateChallengeCountdown() {
+  const now = new Date().getTime();
+  const distance = TARGET_DEADLINE - now;
+
+  const timerEl = document.getElementById("countdownText");
+  if (!timerEl) return;
+
+  // If the deadline has passed
+  if (distance < 0) {
+    timerEl.textContent = "CHALLENGE ENDED";
+    document.getElementById("challengeCountdown").style.borderColor = "var(--pink)";
+    document.getElementById("challengeCountdown").style.color = "var(--pink)";
+    return;
+  }
+
+  // Time calculations for days, hours, minutes, and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Format strings with leading zeros for visual layout symmetry
+  const dStr = days > 0 ? `${days}s ` : "";
+  const hStr = String(hours).padStart(2, "0");
+  const mStr = String(minutes).padStart(2, "0");
+  const sStr = String(seconds).padStart(2, "0");
+
+  timerEl.textContent = `${dStr}${hStr}h ${mStr}m ${sStr}s`;
+}
+
+// Execute immediately on launch and link continuous interval
+updateChallengeCountdown();
+setInterval(updateChallengeCountdown, 1000);
 
 const LEVELS = [
   { threshold: 0,     title: 'Rookie Supporter',    reward: 'Just getting started' },
