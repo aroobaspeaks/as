@@ -278,9 +278,9 @@
         <div id="authFormBox" style="display:none;margin-top:14px;">
           <label id="authNameLbl">Your name / TikTok handle</label>
           <input id="authName" placeholder="e.g. @sara.edits" />
-          <label id="authMobileLbl">Mobile number <span class="req">*</span></label>
+          <label id="authMobileLbl">Mobile number <span class="hint">(optional)</span></label>
           <input id="authMobile" inputmode="tel" maxlength="11" placeholder="03XXXXXXXXX" />
-          <div class="hint" id="authMobileHint">Pakistani mobile number, required</div>
+          <div class="hint" id="authMobileHint">Pakistani mobile number — you can add this later when you tip</div>
           <label>Email</label>
           <input id="authEmail" type="email" placeholder="you@example.com" />
           <label>Password</label>
@@ -290,10 +290,10 @@
         </div>
         <div id="googleCompleteBox" style="display:none;margin-top:14px;">
           <h2 style="font-size:13px;">✨ One more step</h2>
-          <p class="subtext">We need your mobile number to finish setting up your account.</p>
+          <p class="subtext">Just confirm your name to finish setting up your account.</p>
           <label>Your name</label>
           <input id="gName" placeholder="Your name" />
-          <label>Mobile number <span class="req">*</span></label>
+          <label>Mobile number <span class="hint">(optional)</span></label>
           <input id="gMobile" inputmode="tel" maxlength="11" placeholder="03XXXXXXXXX" />
           <button class="submitbtn cyan" id="gCompleteBtn" type="button">Finish Sign Up</button>
           <div id="gCompleteMsg" class="msg"></div>
@@ -872,11 +872,12 @@ async function handleAuthSubmit(){
   try{
     if(authMode === 'signup'){
       const name = document.getElementById('authName').value.trim();
-      const mobile = normalizeMobile(document.getElementById('authMobile').value);
+      const mobileRaw = document.getElementById('authMobile').value.trim();
+      const mobile = mobileRaw ? normalizeMobile(mobileRaw) : null;
       if(!name || !email || password.length < 6){
         throw { message: 'Fill in your name, email, and a password of 6+ characters.', raw:true };
       }
-      if(!isValidMobile(mobile)){
+      if(mobile && !isValidMobile(mobile)){
         throw { message: 'Enter a valid Pakistani mobile number, e.g. 03001234567.', raw:true };
       }
       session = await signUpUser(name, mobile, email, password);
@@ -958,9 +959,10 @@ document.getElementById('gCompleteBtn').addEventListener('click', async ()=>{
   msgEl.className = 'msg'; msgEl.textContent = '';
   if(!pendingGoogle){ msgEl.textContent = 'Session expired, please try Google sign-in again.'; msgEl.className='msg err'; return; }
   const name = document.getElementById('gName').value.trim();
-  const mobile = normalizeMobile(document.getElementById('gMobile').value);
+  const mobileRaw = document.getElementById('gMobile').value.trim();
+  const mobile = mobileRaw ? normalizeMobile(mobileRaw) : null;
   if(!name){ msgEl.textContent = 'Enter your name.'; msgEl.className='msg err'; return; }
-  if(!isValidMobile(mobile)){ msgEl.textContent = 'Enter a valid Pakistani mobile number, e.g. 03001234567.'; msgEl.className='msg err'; return; }
+  if(mobile && !isValidMobile(mobile)){ msgEl.textContent = 'Enter a valid Pakistani mobile number, e.g. 03001234567.'; msgEl.className='msg err'; return; }
 
   const btn = document.getElementById('gCompleteBtn');
   btn.disabled = true; btn.textContent = 'Saving…';
