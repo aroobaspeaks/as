@@ -26,6 +26,8 @@
     --neon-glow: 0 0 20px rgba(37, 244, 238, 0.25);
     --pink-glow: 0 0 20px rgba(254, 44, 85, 0.25);
     --glass-shimmer: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0) 55%);
+    --glass-top-sheen: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 35%, rgba(255,255,255,0) 60%);
+    --glass-deep-shadow: 0 22px 55px rgba(0,0,0,0.45), 0 4px 14px rgba(0,0,0,0.35);
   }
   
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -136,36 +138,43 @@
   .card { 
     background: var(--card); 
     border: 1px solid var(--line); 
-    border-radius: 24px; 
+    border-radius: 28px; 
     padding: 22px; 
     margin-bottom: 18px; 
     position: relative; 
-    backdrop-filter: blur(16px) saturate(120%);
-    -webkit-backdrop-filter: blur(16px) saturate(120%);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow: var(--glass-deep-shadow), inset 0 1px 1px rgba(255,255,255,0.12), inset 0 -1px 12px rgba(0,0,0,0.25);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
     overflow: hidden;
+    transform-style: preserve-3d;
   }
+
+  .card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: var(--glass-top-sheen); pointer-events: none; z-index: 0;
+  }
+  .card > * { position: relative; z-index: 1; }
   
   .card:hover {
-    transform: translateY(-4px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.45), inset 0 1px 2px rgba(255,255,255,0.15);
+    transform: translateY(-6px) scale(1.012);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 65px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.18), inset 0 -1px 14px rgba(0,0,0,0.3);
   }
   
   .card::after {
     content: ''; position: absolute; inset: 0; background: var(--glass-shimmer);
-    transform: translateX(-100%); transition: none; pointer-events: none;
+    transform: translateX(-100%); transition: none; pointer-events: none; z-index: 2;
   }
   .card:hover::after { transform: translateX(100%); transition: transform 0.8s ease-in-out; }
 
   .card.glow-border { 
     border: 1px solid transparent; 
     background: linear-gradient(var(--bg-soft), var(--bg-soft)) padding-box, linear-gradient(135deg, var(--cyan), var(--pink)) border-box;
-    box-shadow: 0 16px 45px rgba(0,0,0,0.4), var(--neon-glow);
+    box-shadow: var(--glass-deep-shadow), var(--neon-glow), inset 0 1px 1px rgba(255,255,255,0.12);
   }
   .card.glow-border:hover {
-    box-shadow: 0 24px 55px rgba(0,0,0,0.5), var(--neon-glow), var(--pink-glow);
+    box-shadow: 0 30px 65px rgba(0,0,0,0.55), var(--neon-glow), var(--pink-glow), inset 0 1px 2px rgba(255,255,255,0.18);
   }
 
   .card h2 { font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: 0.02em; color: #fff; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
@@ -175,8 +184,8 @@
   /* Premium Perks Design at Top */
   .perks-header { background: linear-gradient(90deg, var(--gold), #FF9F43); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900 !important; }
   .perk-badge-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
-  .perk-item { display: flex; gap: 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.05); padding: 12px 14px; border-radius: 16px; align-items: center; transition: background 0.3s; }
-  .perk-item:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255,200,71,0.2); }
+  .perk-item { display: flex; gap: 12px; background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); padding: 12px 14px; border-radius: 18px; align-items: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); transition: background 0.3s, transform 0.3s; }
+  .perk-item:hover { background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,200,71,0.03)); border-color: rgba(255,200,71,0.2); transform: translateY(-1px); }
   .perk-icon { font-size: 22px; filter: drop-shadow(0 0 6px rgba(255,200,71,0.4)); flex-shrink: 0; }
   .perk-text { font-size: 13px; line-height: 1.4; color: var(--ink); }
   .perk-text b { color: var(--gold); }
@@ -184,10 +193,10 @@
   /* Premium Stats Display */
   .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
   .stat { 
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 16px 8px; text-align: center; 
-    backdrop-filter: blur(12px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: transform 0.3s;
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 16px 8px; text-align: center; 
+    backdrop-filter: blur(16px) saturate(140%); box-shadow: 0 10px 28px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.08); transition: transform 0.3s, box-shadow 0.3s;
   }
-  .stat:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+  .stat:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); box-shadow: 0 14px 34px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.12); }
   .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; background: linear-gradient(90deg, var(--cyan), #fff, var(--pink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
   .stat-lbl { font-size: 10px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 5px; font-weight: 800; }
   .stat-lbl-ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; font-size: 11.5px; color: var(--ink-dim2); margin-top: 2px; }
@@ -203,8 +212,8 @@
   @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* Interactive Elements, Details & Inputs */
-  details { background: var(--card); border: 1px solid var(--line); border-radius: 24px; margin-bottom: 18px; overflow: hidden; backdrop-filter: blur(16px); box-shadow: 0 12px 35px rgba(0,0,0,0.2); transition: border-color 0.3s; }
-  details:hover { border-color: rgba(255,255,255,0.15); }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 28px; margin-bottom: 18px; overflow: hidden; position: relative; backdrop-filter: blur(20px) saturate(150%); box-shadow: var(--glass-deep-shadow), inset 0 1px 1px rgba(255,255,255,0.1); transition: border-color 0.3s, box-shadow 0.3s; }
+  details:hover { border-color: rgba(255,255,255,0.15); box-shadow: 0 26px 58px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.14); }
   details summary { list-style: none; cursor: pointer; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.01em; }
   details summary::-webkit-details-marker { display: none; }
   details summary .chev { transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1); color: var(--ink-dim); font-size: 14px; }
@@ -218,7 +227,7 @@
   .step-ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; text-align: right; font-size: 14px; color: var(--ink-dim); margin: 2px 0 16px 40px; line-height: 2; }
   .step-ur b { color: var(--cyan); }
 
-  .jazzcash { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: rgba(5,5,6,0.5); border: 1px dashed rgba(255,200,71,0.35); border-radius: 20px; padding: 16px; margin-top: 12px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.4); }
+  .jazzcash { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: linear-gradient(160deg, rgba(255,200,71,0.06), rgba(5,5,6,0.55)); border: 1px dashed rgba(255,200,71,0.35); border-radius: 22px; padding: 16px; margin-top: 12px; backdrop-filter: blur(8px); box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
   .jazzcash-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); }
   .jazzcash-lbl-ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; font-size: 12px; color: var(--ink-dim2); margin-top: 1px; }
   .jazzcash-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: 0.03em; word-break: break-all; color: var(--gold); text-shadow: 0 0 10px rgba(255,200,71,0.2); }
@@ -227,23 +236,49 @@
   .copybtn { 
     background: linear-gradient(135deg, var(--gold), #E0A926); color: #201702; border: none; border-radius: 14px; 
     padding: 12px 18px; font-weight: 800; font-size: 13px; cursor: pointer; text-align: center; line-height: 1.3; 
-    min-height: 46px; flex-shrink: 0; box-shadow: 0 4px 15px rgba(255,200,71,0.2); transition: transform 0.1s, box-shadow 0.3s;
+    min-height: 46px; flex-shrink: 0; 
+    box-shadow: 0 4px 15px rgba(255,200,71,0.25), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.15s, box-shadow 0.3s;
   }
   .copybtn .cb-ur { display: block; font-family: 'Noto Nastaliq Urdu', serif; font-weight: 700; font-size: 12px; direction: rtl; margin-top: 1px; }
   .copybtn:active { transform: scale(0.96); }
   .copybtn:hover { box-shadow: 0 6px 20px rgba(255,200,71,0.35); }
   .copybtn.copied { background: linear-gradient(135deg, var(--ok), #22b882) !important; color: #021f14 !important; box-shadow: 0 4px 15px rgba(45,225,160,0.3); }
 
+  /* Screenshot Upload */
+  .uploadbtn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+    border: 1.5px dashed rgba(255,255,255,0.2); border-radius: 16px; padding: 16px;
+    color: var(--ink); font-size: 14px; font-weight: 700; font-family: 'Inter', sans-serif;
+    cursor: pointer; min-height: 54px; backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.06), 0 6px 18px rgba(0,0,0,0.2);
+    transition: transform 0.15s, border-color 0.3s, background 0.3s, box-shadow 0.3s;
+  }
+  .uploadbtn span:first-child { font-size: 18px; }
+  .uploadbtn:hover { border-color: rgba(37,244,238,0.4); background: linear-gradient(135deg, rgba(37,244,238,0.08), rgba(255,255,255,0.02)); }
+  .uploadbtn:active { transform: scale(0.98); }
+  .uploadbtn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .upload-preview-wrap {
+    display: flex; align-items: center; gap: 12px; margin-top: 4px; padding: 10px;
+    background: rgba(45,225,160,0.06); border: 1px solid rgba(45,225,160,0.25); border-radius: 16px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  }
+  .upload-preview-wrap img { width: 46px; height: 46px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+  .removeUploadBtn { background: transparent; border: 1px solid var(--line); color: var(--ink-dim); border-radius: 10px; padding: 6px 10px; font-size: 11px; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: color 0.2s, border-color 0.2s; }
+  .removeUploadBtn:hover { color: var(--pink); border-color: rgba(254,44,85,0.4); }
+
   label { display: block; font-size: 12px; font-weight: 700; color: #fff; margin: 16px 0 4px; letter-spacing: 0.01em; }
   label:first-of-type { margin-top: 0; }
   .label-ur { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; text-align: right; font-size: 13px; color: var(--ink-dim); margin-bottom: 8px; font-weight: 500; }
   
   input, select { 
-    width: 100%; background: rgba(5,5,6,0.5); border: 1px solid var(--line); border-radius: 14px; 
+    width: 100%; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(5,5,6,0.5) 40%); border: 1px solid var(--line); border-radius: 16px; 
     padding: 14px 16px; color: var(--ink); font-size: 16px; font-family: 'Inter', sans-serif; min-height: 50px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); transition: border-color 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(6px);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05); transition: border-color 0.3s, box-shadow 0.3s;
   }
-  input:focus, select:focus { outline: none; border-color: var(--cyan); box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 0 3px rgba(37,244,238,0.18); }
+  input:focus, select:focus { outline: none; border-color: var(--cyan); box-shadow: inset 0 2px 6px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 0 3px rgba(37,244,238,0.18); }
   input::placeholder { color: var(--ink-dim2); }
   input[type="checkbox"] { width: auto; min-height: auto; cursor: pointer; }
   .hint { font-size: 11px; color: var(--ink-dim); margin-top: 6px; line-height: 1.4; }
@@ -253,9 +288,10 @@
   /* Modern Solid CTA Inputs */
   .submitbtn { 
     width: 100%; margin-top: 20px; background: linear-gradient(135deg, var(--pink), #ff5376); color: #fff; 
-    border: none; border-radius: 16px; padding: 16px; font-weight: 800; font-family: 'Poppins', sans-serif; 
-    font-size: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(254,44,85,0.35); text-align: center; 
-    min-height: 56px; transition: transform 0.1s, box-shadow 0.3s;
+    border: none; border-radius: 18px; padding: 16px; font-weight: 800; font-family: 'Poppins', sans-serif; 
+    font-size: 16px; cursor: pointer; text-align: center; 
+    box-shadow: 0 10px 28px rgba(254,44,85,0.4), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -3px 6px rgba(0,0,0,0.15);
+    min-height: 56px; transition: transform 0.15s, box-shadow 0.3s;
   }
   .submitbtn .sb-ur { display: block; font-family: 'Noto Nastaliq Urdu', serif; font-weight: 700; font-size: 14px; direction: rtl; margin-top: 2px; }
   .submitbtn:active { transform: scale(0.98); }
@@ -397,6 +433,94 @@
     <p class="lead fade-up" style="animation-delay:.1s;">Send a tip to <span class="handle" id="creatorHandle">Arooba</span>, climb the leaderboard. Top 5 win a shoutout + collab video. Share your link to earn bonus points.</p>
     <p class="lead ur fade-up" style="animation-delay:.1s;">سپورٹ کریں <span class="handle" id="creatorHandleUr">Arooba</span> اور لیڈر بورڈ پر آگے بڑھیں۔ ٹاپ 5 کو کولاب اور گفٹ ملے گا۔ اپنا لنک شیئر کر کے بونس پوائنٹس کمائیں۔</p>
 
+    <!-- HOW IT WORKS -->
+    <details class="fade-up" style="animation-delay:.25s;" open>
+      <summary>⚡ How it works <span class="chev">▾</span></summary>
+      <div class="details-body">
+        <div class="jazzcash">
+          <div>
+            <div class="jazzcash-lbl">JazzCash Number</div>
+            <div class="jazzcash-lbl-ur">جاز کیش نمبر</div>
+            <div class="jazzcash-num" id="jcNumber">03256795145</div>
+            <div class="min-tag">Min. Rs. 200 · کم از کم 200</div>
+          </div>
+          <button class="copybtn" id="jcCopyBtn" type="button">Copy<span class="cb-ur">کاپی</span></button>
+        </div>
+        <div class="step"><div class="step-num">1</div><p>Send at least <b>Rs. 200</b> to the JazzCash number above.</p></div>
+        <div class="step-ur">اوپر دیے گئے <b>جاز کیش نمبر</b> پر کم از کم <b>200 روپے</b> بھیجیں۔</div>
+        <div class="step"><div class="step-num">2</div><p>Submit your <b>transaction ID</b> and mobile number below — takes 15 seconds.</p></div>
+        <div class="step-ur">اپنی <b>ٹرانزیکشن آئی ڈی</b> اور موبائل نمبر جمع کروائیں — صرف 15 سیکنڈ لگیں گے۔</div>
+        <div class="step"><div class="step-num">3</div><p>Get your own <b>referral link</b>. Share it — every tip from it earns you bonus points.</p></div>
+        <div class="step-ur" style="margin-bottom:0;">اپنا <b>ریفرل لنک</b> حاصل کریں۔ اسے شیئر کریں — بونس پوائنٹس ملیں گے۔</div>
+      </div>
+    </details>
+
+    <!-- SUBMIT TIP -->
+    <div class="card glow-border fade-up" id="submitCard" style="animation-delay:.3s;">
+      <h2>💌 Submit Your Tip</h2>
+      
+      
+      <label>Your name / TikTok handle</label>
+      <div class="label-ur">آپ کا نام / ٹک ٹاک ہینڈل</div>
+      <input id="inName" placeholder="e.g. @sara.edits" />
+
+      <label>Mobile number <span class="req">*</span></label>
+      <div class="label-ur">موبائل نمبر (لازمی)</div>
+      <input id="inMobile" inputmode="tel" maxlength="11" placeholder="03XXXXXXXXX" />
+      <div class="hint">Used only to verify your JazzCash payment</div>
+      <div class="hint-ur">صرف جاز کیش ادائیگی کی تصدیق کے لیے</div>
+
+      <label>Amount sent (PKR)</label>
+      <div class="label-ur">بھیجی گئی رقم (روپے)</div>
+      <input id="inAmount" type="number" inputmode="numeric" placeholder="e.g. 200" />
+      <div class="hint">Minimum Rs. 200</div>
+
+      <label>Transaction ID</label>
+      <div class="label-ur">ٹرانزیکشن آئی ڈی</div>
+      <input id="inTxn" placeholder="JazzCash transaction ID" />
+
+      <label>Screenshot / Proof Image <span style="color:var(--ink-dim); font-weight:400;">(Optional)</span></label>
+      <div class="label-ur">اسکرین شاٹ اپ لوڈ کریں (اختیاری)</div>
+      <input type="file" id="inScreenshotFile" accept="image/*" style="display:none;" />
+      <input type="hidden" id="inScreenshot" value="" />
+      <button type="button" class="uploadbtn" id="uploadTriggerBtn">
+        <span id="uploadBtnIcon">📷</span>
+        <span id="uploadBtnText">Tap to upload screenshot</span>
+      </button>
+      <div id="uploadPreviewWrap" class="upload-preview-wrap" style="display:none;">
+        <img id="uploadPreviewImg" alt="proof preview" />
+        <span style="flex:1; font-size:12px; color:var(--ok); font-weight:700;">✅ Uploaded</span>
+        <button type="button" class="removeUploadBtn" id="removeUploadBtn">✕ Remove</button>
+      </div>
+      <div id="uploadStatus" class="hint"></div>
+
+      <label>Referral code <span style="color:var(--ink-dim);font-weight:400;">(auto-filled if you used a link)</span></label>
+      <div class="label-ur">ریفرل کوڈ (اگر لنک استعمال کیا ہے تو خودکار آ جائے گا)</div>
+      <input id="inRef" placeholder="optional" />
+
+      <div id="voteRow" style="display:none;margin-top:14px;">
+        <label style="margin-bottom:6px;">Vote in the Song Battle (optional)</label>
+        <div style="display:flex;gap:8px;">
+          <button type="button" class="copybtn" id="voteABtn" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--ink);"><span id="voteALabel">Song A</span></button>
+          <button type="button" class="copybtn" id="voteBBtn" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--ink);"><span id="voteBLabel">Song B</span></button>
+        </div>
+      </div>
+
+      <button class="submitbtn" id="submitBtn" type="button">Confirm Tip<span class="sb-ur">ٹپ کی تصدیق کریں</span></button>
+      <div id="submitMsg"></div>
+    </div>
+
+    <div class="card confetti-pop fade-up" id="resultCard" style="display:none;">
+      <h2>🎉 You're In!</h2>
+      <span class="card h2-ur">آپ شامل ہو گئے!</span>
+      <p class="subtext" style="margin-bottom:2px;">Your tip is being verified. Meanwhile — here's your referral link:</p>
+      <p class="subtext ur">آپ کی ٹپ کی تصدیق کی جا رہی ہے۔ اس دوران یہ رہا آپ کا ریفرل لنک:</p>
+      <div class="reflink">
+        <input id="myRefLink" readonly />
+        <button class="copybtn" id="refCopyBtn" type="button">Copy<span class="cb-ur">کاپی</span></button>
+      </div>
+    </div>
+
     <!-- PREMIUM TIERS & PERKS SECTION (BROUGHT TO TOP) -->
     <div class="card glow-border fade-up" style="animation-delay:.12s; background: linear-gradient(145deg, rgba(25,22,15,0.7), rgba(15,15,20,0.7));">
       <h2 class="perks-header">💎 Exclusive Supporter Perks &amp; Rewards</h2>
@@ -512,28 +636,6 @@
       </div>
     </div>
 
-    <!-- HOW IT WORKS -->
-    <details class="fade-up" style="animation-delay:.25s;" open>
-      <summary>⚡ How it works <span class="chev">▾</span></summary>
-      <div class="details-body">
-        <div class="step"><div class="step-num">1</div><p>Send at least <b>Rs. 1000</b> to the JazzCash number below.</p></div>
-        <div class="step-ur">نیچے دیے گئے <b>جاز کیش نمبر</b> پر کم از کم <b>1000 روپے</b> بھیجیں۔</div>
-        <div class="step"><div class="step-num">2</div><p>Submit your <b>transaction ID</b> and mobile number below — takes 15 seconds.</p></div>
-        <div class="step-ur">اپنی <b>ٹرانزیکشن آئی ڈی</b> اور موبائل نمبر جمع کروائیں — صرف 15 سیکنڈ لگیں گے۔</div>
-        <div class="step"><div class="step-num">3</div><p>Get your own <b>referral link</b>. Share it — every tip from it earns you bonus points.</p></div>
-        <div class="step-ur" style="margin-bottom:0;">اپنا <b>ریفرل لنک</b> حاصل کریں۔ اسے شیئر کریں — بونس پوائنٹس ملیں گے۔</div>
-        <div class="jazzcash">
-          <div>
-            <div class="jazzcash-lbl">JazzCash Number</div>
-            <div class="jazzcash-lbl-ur">جاز کیش نمبر</div>
-            <div class="jazzcash-num" id="jcNumber">03256795145</div>
-            <div class="min-tag">Min. Rs. 1000 · کم از کم 1000</div>
-          </div>
-          <button class="copybtn" id="jcCopyBtn" type="button">Copy<span class="cb-ur">کاپی</span></button>
-        </div>
-      </div>
-    </details>
-
     <!-- SONG BATTLE -->
     <div class="card fade-up" id="battleCard" style="animation-delay:.28s;display:none;">
       <h2>⚔️ Song Battle</h2>
@@ -544,62 +646,6 @@
         <div class="battle-side right"><div class="battle-name" id="battleSongB">Song B</div><div class="battle-amt" id="battleTotalB">Rs.0</div></div>
       </div>
       <div class="battle-track"><div class="battle-fill a" id="battleBarA" style="width:50%;"></div><div class="battle-fill b" id="battleBarB" style="width:50%;"></div></div>
-    </div>
-
-    <!-- SUBMIT TIP -->
-    <div class="card glow-border fade-up" id="submitCard" style="animation-delay:.3s;">
-      <h2>💌 Submit Your Tip</h2>
-      
-      
-      <label>Your name / TikTok handle</label>
-      <div class="label-ur">آپ کا نام / ٹک ٹاک ہینڈل</div>
-      <input id="inName" placeholder="e.g. @sara.edits" />
-
-      <label>Mobile number <span class="req">*</span></label>
-      <div class="label-ur">موبائل نمبر (لازمی)</div>
-      <input id="inMobile" inputmode="tel" maxlength="11" placeholder="03XXXXXXXXX" />
-      <div class="hint">Used only to verify your JazzCash payment</div>
-      <div class="hint-ur">صرف جاز کیش ادائیگی کی تصدیق کے لیے</div>
-
-      <label>Amount sent (PKR)</label>
-      <div class="label-ur">بھیجی گئی رقم (روپے)</div>
-      <input id="inAmount" type="number" inputmode="numeric" placeholder="e.g. 1000" />
-      <div class="hint">Minimum Rs. 1000</div>
-
-      <label>Transaction ID</label>
-      <div class="label-ur">ٹرانزیکشن آئی ڈی</div>
-      <input id="inTxn" placeholder="JazzCash transaction ID" />
-
-      <label>Screenshot / Proof Image <span style="color:var(--ink-dim); font-weight:400;">(Optional)</span></label>
-      <div class="label-ur">اسکرین شاٹ لنک (اختیاری)</div>
-      <input id="inScreenshot" placeholder="Paste your ImgBB image URL link here" />
-      <div class="hint" style="color:var(--gold);">💡 How to upload proof: Go to free image hosting sites like <b>imgbb.com</b>, upload your screenshot receipt, and paste the image Link here!</div>
-
-      <label>Referral code <span style="color:var(--ink-dim);font-weight:400;">(auto-filled if you used a link)</span></label>
-      <div class="label-ur">ریفرل کوڈ (اگر لنک استعمال کیا ہے تو خودکار آ جائے گا)</div>
-      <input id="inRef" placeholder="optional" />
-
-      <div id="voteRow" style="display:none;margin-top:14px;">
-        <label style="margin-bottom:6px;">Vote in the Song Battle (optional)</label>
-        <div style="display:flex;gap:8px;">
-          <button type="button" class="copybtn" id="voteABtn" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--ink);"><span id="voteALabel">Song A</span></button>
-          <button type="button" class="copybtn" id="voteBBtn" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--ink);"><span id="voteBLabel">Song B</span></button>
-        </div>
-      </div>
-
-      <button class="submitbtn" id="submitBtn" type="button">Confirm Tip<span class="sb-ur">ٹپ کی تصدیق کریں</span></button>
-      <div id="submitMsg"></div>
-    </div>
-
-    <div class="card confetti-pop fade-up" id="resultCard" style="display:none;">
-      <h2>🎉 You're In!</h2>
-      <span class="card h2-ur">آپ شامل ہو گئے!</span>
-      <p class="subtext" style="margin-bottom:2px;">Your tip is being verified. Meanwhile — here's your referral link:</p>
-      <p class="subtext ur">آپ کی ٹپ کی تصدیق کی جا رہی ہے۔ اس دوران یہ رہا آپ کا ریفرل لنک:</p>
-      <div class="reflink">
-        <input id="myRefLink" readonly />
-        <button class="copybtn" id="refCopyBtn" type="button">Copy<span class="cb-ur">کاپی</span></button>
-      </div>
     </div>
 
     <div class="card fade-up" style="animation-delay:.35s;">
@@ -691,6 +737,8 @@ const FIREBASE_API_KEY = "AIzaSyBYXSAfQqXagT6Wvp9WwF_bogZvJNxqDp8";
 const ADMIN_EMAIL = "r0333678@gmail.com";
 const ADMIN_UID = "Z5hPFN6rTpUc7aVT8q4LpKjdttY2"; 
 const GOOGLE_CLIENT_ID = "508931802268-adh3fslvpgkdusagn6jrif7mhqu0fpjc.apps.googleusercontent.com";
+// Free ImgBB API key — get yours at https://api.imgbb.com/ and paste it below (see setup notes).
+const IMGBB_API_KEY = "d419ce273f16b69319431af8287bf4fd";
 
 const TARGET_DEADLINE = new Date("2026-07-15T23:59:59").getTime();
 
@@ -745,7 +793,7 @@ let pendingGoogle = null;
 let lastAdminTips = [];
 let adminFilter = 'all';
 
-const MIN_TIP = 1000;
+const MIN_TIP = 200;
 const MOBILE_RE = /^03\d{9}$/;
 
 document.getElementById('creatorHandle').textContent = CREATOR_HANDLE;
@@ -835,6 +883,64 @@ document.getElementById('refCopyBtn').addEventListener('click', async function()
   flashCopied(this, ok);
 });
 document.getElementById('submitBtn').addEventListener('click', submitTip);
+
+document.getElementById('uploadTriggerBtn').addEventListener('click', ()=>{
+  document.getElementById('inScreenshotFile').click();
+});
+
+document.getElementById('inScreenshotFile').addEventListener('change', async function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const statusEl = document.getElementById('uploadStatus');
+  const triggerBtn = document.getElementById('uploadTriggerBtn');
+  const btnText = document.getElementById('uploadBtnText');
+  statusEl.textContent = '';
+  statusEl.style.color = '';
+
+  if(!IMGBB_API_KEY || IMGBB_API_KEY.startsWith('YOUR_')){
+    statusEl.textContent = 'Image upload isn\'t set up yet — ask the site owner to add a free ImgBB API key.';
+    statusEl.style.color = 'var(--pink)';
+    e.target.value = '';
+    return;
+  }
+
+  triggerBtn.disabled = true;
+  btnText.textContent = 'Uploading…';
+
+  try{
+    const formData = new FormData();
+    formData.append('image', file);
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if(!data || !data.success || !data.data || !data.data.url) throw new Error('upload failed');
+
+    document.getElementById('inScreenshot').value = data.data.url;
+    document.getElementById('uploadPreviewImg').src = data.data.url;
+    document.getElementById('uploadPreviewWrap').style.display = 'flex';
+    triggerBtn.style.display = 'none';
+  }catch(err){
+    statusEl.textContent = 'Upload failed — please try again.';
+    statusEl.style.color = 'var(--pink)';
+    btnText.textContent = 'Tap to upload screenshot';
+    triggerBtn.disabled = false;
+    e.target.value = '';
+  }
+});
+
+document.getElementById('removeUploadBtn').addEventListener('click', ()=>{
+  document.getElementById('inScreenshot').value = '';
+  document.getElementById('inScreenshotFile').value = '';
+  document.getElementById('uploadPreviewWrap').style.display = 'none';
+  const triggerBtn = document.getElementById('uploadTriggerBtn');
+  triggerBtn.style.display = 'flex';
+  triggerBtn.disabled = false;
+  document.getElementById('uploadBtnText').textContent = 'Tap to upload screenshot';
+  document.getElementById('uploadStatus').textContent = '';
+});
 document.getElementById('adminToggle').addEventListener('click', toggleAdmin);
 document.getElementById('adminUnlockBtn').addEventListener('click', loadAdmin);
 
@@ -1401,7 +1507,7 @@ async function submitTip(){
     return;
   }
   if(amount < MIN_TIP){
-    msgEl.innerHTML = `Minimum tip is Rs. ${MIN_TIP}. Please send at least that amount.<span class='msg-ur ur'>کم از کم ٹپ 1000 روپے ہے۔ براہ کرم کم از کم اتنی رقم بھیجیں۔</span>`;
+    msgEl.innerHTML = `Minimum tip is Rs. ${MIN_TIP}. Please send at least that amount.<span class='msg-ur ur'>کم از کم ٹپ 200 روپے ہے۔ براہ کرم کم از کم اتنی رقم بھیجیں۔</span>`;
     msgEl.className = 'msg err';
     return;
   }
